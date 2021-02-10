@@ -99,7 +99,9 @@ module.exports = {
 			topic: topic
 		});
 
-		let name = 'ticket-' + ticket.id;
+		let name = config.tickets.use_name_in_channel ?
+			'ticket-' + u.username + '-' + ticket.id :
+			'ticket-' + ticket.id;
 
 		channel.guild.channels.create(name, {
 			type: 'text',

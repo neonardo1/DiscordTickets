@@ -85,7 +85,9 @@ module.exports = {
 			topic: topic
 		});
 
-		let name = 'ticket-' + ticket.get('id');
+		let name = config.tickets.use_name_in_channel ?
+			'ticket-' + message.author.username + '-' + ticket.get('id') :
+			'ticket-' + ticket.get('id');
 
 		guild.channels.create(name, {
 			type: 'text',
