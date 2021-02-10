@@ -183,17 +183,20 @@ module.exports = {
 			log.info(`${message.author.tag} closed a ticket (#ticket-${ticket.id})`);
 
 			if (config.logs.discord.enabled) {
-				client.channels.cache.get(config.logs.discord.channel).send(
-					new MessageEmbed()
-						.setColor(config.colour)
-						.setAuthor(message.author.username, message.author.displayAvatarURL())
-						.setTitle('Ticket closed')
-						.addField('Creator', `<@${ticket.creator}>`, true)
-						.addField('Closed by', message.author, true)
-						.addField("Ticket ID", ticket.id, true)
-						.setFooter(guild.name, guild.iconURL())
-						.setTimestamp()
-				);
+				let embed = new MessageEmbed()
+					.setColor(config.colour)
+					.setAuthor(message.author.username, message.author.displayAvatarURL())
+					.setTitle('Ticket closed')
+					.addField('Creator', `<@${ticket.creator}>`, true)
+					.addField('Closed by', message.author, true)
+					.addField('Ticket ID', ticket.id, true)
+					.setFooter(guild.name, guild.iconURL())
+					.setTimestamp();
+
+				if (config.transcripts.web.enabled)
+					embed.addField('Transcript', config.transcripts.web.server + '/' + ticket.creator + '/' + message.channel.id, false);
+
+				client.channels.cache.get(config.logs.discord.channel).send(embed);
 			}
 		});
 
