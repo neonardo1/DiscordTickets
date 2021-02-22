@@ -67,7 +67,7 @@ module.exports = {
 			res.files = [
 				{
 					attachment: join(__dirname, file),
-					name: `ticket-${id}-${ticket.channel}.txt`
+					name: `${config.tickets.channel_prefix}-${id}-${ticket.channel}.txt`
 				}
 			];
 		}

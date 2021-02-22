@@ -52,6 +52,7 @@ module.exports = {
 	staff_role: '', // ID of your Support Team role
 
 	tickets: {
+		channel_prefix: 'ticket',
 		category: '', // ID of your tickets category
 		send_img: true,
 		ping: 'here',

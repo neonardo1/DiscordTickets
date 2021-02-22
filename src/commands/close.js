@@ -180,7 +180,7 @@ module.exports = {
 						.then(() => confirm.delete());
 			}, 5000);
 
-			log.info(`${message.author.tag} closed a ticket (#ticket-${ticket.id})`);
+			log.info(`${message.author.tag} closed a ticket (#${config.tickets.channel_prefix}-${ticket.id})`);
 
 			if (config.logs.discord.enabled) {
 				let embed = new MessageEmbed()

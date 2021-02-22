@@ -100,8 +100,8 @@ module.exports = {
 		});
 
 		let name = config.tickets.use_name_in_channel ?
-			'ticket-' + u.username + '-' + ticket.id :
-			'ticket-' + ticket.id;
+			config.tickets.channel_prefix + '-' + u.username + '-' + ticket.id :
+			config.tickets.channel_prefix + '-' + ticket.id;
 
 		channel.guild.channels.create(name, {
 			type: 'text',
